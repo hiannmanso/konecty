@@ -73,3 +73,26 @@ Retorna um produto específico pelo seu ID.
     "updatedAt": "2024-06-30T12:00:00Z"
   }
   ```
+
+# Criar um Novo Produto
+
+Cria um novo produto.
+
+- **URL**
+
+  `/products`
+
+- **Método**
+
+  `POST`
+
+- **Corpo da Solicitação**
+
+  ```json
+  {
+    "name": "Product 1",
+    "description": "Description 1",
+    "category": "Category 1",
+    "price": 100,
+    "imageUrl": "http://example.com/image.jpg"
+  }
