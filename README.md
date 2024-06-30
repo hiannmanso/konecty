@@ -40,6 +40,7 @@ Exemplo de Resposta
     "updatedAt": "2024-06-30T12:00:00Z"
   }
 ]
+```
 
 ## Obter um Produto por ID
 
