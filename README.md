@@ -96,3 +96,22 @@ Cria um novo produto.
     "price": 100,
     "imageUrl": "http://example.com/image.jpg"
   }
+
+# Excluir um Produto
+
+Exclui um produto existente.
+
+- **URL**
+
+  `/products/:id`
+
+- **Método**
+
+  `DELETE`
+
+- **Exemplo de Requisição**
+
+  ```bash
+  curl -X DELETE 'http://localhost:3000/products/1'
+
+  
