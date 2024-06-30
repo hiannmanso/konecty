@@ -25,8 +25,8 @@ Retorna todos os produtos cadastrados.
 
   ```bash
   curl -X GET 'http://localhost:3000/products?name=Product&category=Category'
-
-
+  
+Exemplo de Resposta
 ```bash
 [
   {
@@ -40,3 +40,20 @@ Retorna todos os produtos cadastrados.
     "updatedAt": "2024-06-30T12:00:00Z"
   }
 ]
+
+## Obter um Produto por ID
+
+Retorna um produto específico pelo seu ID.
+
+- **URL**
+
+  `/products/:id`
+
+- **Método**
+
+  `GET`
+
+- **Exemplo de Requisição**
+
+  ```bash
+  curl -X GET 'http://localhost:3000/products/1'
