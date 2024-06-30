@@ -114,7 +114,7 @@ Exclui um produto existente.
   ```bash
   curl -X DELETE 'http://localhost:3000/products/1'
 
-  # Atualizar um Produto Existente
+ # Atualizar um Produto Existente
 
 Atualiza os detalhes de um produto existente.
 
