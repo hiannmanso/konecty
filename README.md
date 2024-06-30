@@ -61,7 +61,7 @@ Retorna um produto específico pelo seu ID.
 
 - **Exemplo de Resposta**
 
-  ```
+  ```bash
 {
   "id": 1,
   "name": "Product 1",
