@@ -24,7 +24,7 @@ function CategoriesCarousel({ categories, setCategories, products, setProducts }
       method: "GET",
       url: `${process.env.NEXT_PUBLIC_API_URL}/categories`
     }).then(response => {
-      console.log(response);
+    
       setCategories(response.data);
     });
   }, []);
@@ -80,7 +80,7 @@ function CategoriesCarousel({ categories, setCategories, products, setProducts }
         {categories ? categories.map(category => (
           <div
             key={category.id}
-            className={`bg-white rounded-lg shadow-md p-4 text-center cursor-pointer ${selectedCategory === category.name ? 'bg-blue-500 text-white' : ''}`}
+            className={` rounded-lg shadow-md p-4 text-center cursor-pointer ${selectedCategory === category.name ? 'bg-blue-500 text-white' : 'bg-white'}`}
             onClick={() => handleCategoryClick(category.name)}
           >
             <p className="text-lg font-bold">{category.name}</p>

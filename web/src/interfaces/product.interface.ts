@@ -1,4 +1,5 @@
 export interface Product {
+  imageUrl: string | undefined;
   id: number;
   name: string;
   price: number;

@@ -27,15 +27,14 @@ export default function SearchInput({ products, setProducts }: Props) {
     }
 
     return (
-        <>
-            <div className="relative">
+        <div className="relative">
                 <input
                     type="text"
                     className="py-2 pl-10 pr-4 border rounded-lg outline-none focus:ring-2 focus:border-transparent bg-white text-gray-800"
                     placeholder="Buscar produto"
                     value={searchText}
                     onChange={(e) => setSearchText(e.target.value)}
-                    onKeyDown={handleKeyPress} // Captura o evento de tecla pressionada
+                    onKeyDown={handleKeyPress} 
                 />
                 <button
                     type="button"
@@ -47,6 +46,5 @@ export default function SearchInput({ products, setProducts }: Props) {
                     </svg>
                 </button>
             </div>
-        </>
     );
 }
