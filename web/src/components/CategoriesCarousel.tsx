@@ -1,48 +1,71 @@
-"use client"
+"use client";
+import { Category } from '@/interfaces/category.interface';
+import { Product } from '@/interfaces/product.interface';
 import axios from 'axios';
 import React, { useRef, useState, MouseEvent, useEffect } from 'react';
 
-interface Category {
-  id: number;
-  name: string;
-}
 
-function CategoriesCarousel(categories:any, setCategories:any){
-  const categorys: Category[] = [
-    { id: 1, name: 'Corrida' },
-    { id: 2, name: 'Casual' },
-    { id: 3, name: 'Esportivo' },
-    { id: 4, name: 'Feminino' },
-    { id: 5, name: 'Masculino' },
-    { id: 6, name: 'Infantil' }
-  ];
+
+type Props = {
+  categories: Category[];
+  setCategories: React.Dispatch<React.SetStateAction<any>>;
+  products: Product[];
+  setProducts: React.Dispatch<React.SetStateAction<any>>;
+};
+
+function CategoriesCarousel({ categories, setCategories, products, setProducts }: Props) {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [startX, setStartX] = useState<number | null>(null);
-  useEffect(()=>{
-    axios({})
-  },[])
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  function handleMouseDown(e: MouseEvent<HTMLDivElement>){
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: `${process.env.NEXT_PUBLIC_API_URL}/categories`
+    }).then(response => {
+    
+      setCategories(response.data);
+    });
+  }, []);
+
+  function handleMouseDown(e: MouseEvent<HTMLDivElement>) {
     setIsDragging(true);
     if (carouselRef.current) {
       setStartX(e.pageX - carouselRef.current.offsetLeft);
     }
-  };
+  }
 
-  function handleMouseMove(e: MouseEvent<HTMLDivElement>){
+  function handleMouseMove(e: MouseEvent<HTMLDivElement>) {
     if (!isDragging || !startX || !carouselRef.current) return;
     const x = e.pageX - carouselRef.current.offsetLeft;
-    const walk = (x - startX) * 2; 
-    if (carouselRef.current) {
-      carouselRef.current.scrollLeft -= walk;
-    }
-  };
+    const walk = (x - startX) * 2;
+    carouselRef.current.scrollLeft -= walk;
+  }
 
-  function handleMouseUp(){
+  function handleMouseUp() {
     setIsDragging(false);
-  };
+  }
 
+  function filterList(category: string) {
+    axios({
+      method: "GET",
+      url: `${process.env.NEXT_PUBLIC_API_URL}/products?category=${category}`
+    }).then(response => {
+      console.log(response);
+      setProducts(response.data);
+    });
+  }
+
+  function handleCategoryClick(categoryName: string) {
+    if (selectedCategory === categoryName) {
+      setSelectedCategory(null);
+      filterList('');
+    } else {
+      setSelectedCategory(categoryName);
+      filterList(categoryName);
+    }
+  }
 
   return (
     <div
@@ -54,13 +77,16 @@ function CategoriesCarousel(categories:any, setCategories:any){
       onMouseLeave={handleMouseUp}
     >
       <div className="flex space-x-4 p-4">
-        {categorys.map(category => (
-          <div key={category.id} className="bg-white rounded-lg shadow-md p-4 text-center">
+        {categories ? categories.map(category => (
+          <div
+            key={category.id}
+            className={` rounded-lg shadow-md p-4 text-center cursor-pointer ${selectedCategory === category.name ? 'bg-blue-500 text-white' : 'bg-white'}`}
+            onClick={() => handleCategoryClick(category.name)}
+          >
             <p className="text-lg font-bold">{category.name}</p>
           </div>
-        ))}
+        )) : <h1>Carregando categorias...</h1>}
       </div>
-  
     </div>
   );
 }

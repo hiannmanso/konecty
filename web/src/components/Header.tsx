@@ -1,10 +1,12 @@
+import { Product } from "@/interfaces/product.interface";
 
-import { useState } from "react";
-export default function Header() {
+
+export default function Header({products}:Product) {
+  
   return (
     <header className="pt-2">
-    <h1 className="text-4xl font-bold">Tênis</h1>
-    <p className="text-2xl text-bold text-gray-600"> Produtos encontrados</p>
+    <h1 className="text-4xl font-bold" >Tênis</h1>
+    <p className="text-2xl text-bold text-gray-600"> {products? products.length:0} Produtos encontrados</p>
   </header>
   );
 }

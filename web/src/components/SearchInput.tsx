@@ -1,15 +1,7 @@
+import { Product } from "@/interfaces/product.interface";
 import axios from "axios";
 import { useState } from "react";
 
-type Product = {
-    id: number;
-    name: string;
-    price: number;
-    description:string;
-    category: string;
-    createdAt:Date;
-    updatedAt:Date;
-  };
 type Props = {
     products: Product[];
     setProducts: React.Dispatch<React.SetStateAction<any>>; 
@@ -35,15 +27,14 @@ export default function SearchInput({ products, setProducts }: Props) {
     }
 
     return (
-        <>
-            <div className="relative">
+        <div className="relative">
                 <input
                     type="text"
                     className="py-2 pl-10 pr-4 border rounded-lg outline-none focus:ring-2 focus:border-transparent bg-white text-gray-800"
                     placeholder="Buscar produto"
                     value={searchText}
                     onChange={(e) => setSearchText(e.target.value)}
-                    onKeyDown={handleKeyPress} // Captura o evento de tecla pressionada
+                    onKeyDown={handleKeyPress} 
                 />
                 <button
                     type="button"
@@ -55,6 +46,5 @@ export default function SearchInput({ products, setProducts }: Props) {
                     </svg>
                 </button>
             </div>
-        </>
     );
 }
