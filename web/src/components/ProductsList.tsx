@@ -1,15 +1,7 @@
+import { Product } from '@/interfaces/product.interface';
 import React from 'react';
 
-type Product = {
-  imageUrl: string | undefined;
-  id: number;
-  name: string;
-  price: number;
-  category: string;
-  description: string;
-  createdAt: Date;
-  updatedAt: Date;
-};
+
 
 type Props = {
   products: Product[];

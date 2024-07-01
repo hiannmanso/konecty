@@ -1,15 +1,7 @@
+import { Product } from "@/interfaces/product.interface";
 import axios from "axios";
 import { useState } from "react";
 
-type Product = {
-    id: number;
-    name: string;
-    price: number;
-    description:string;
-    category: string;
-    createdAt:Date;
-    updatedAt:Date;
-  };
 type Props = {
     products: Product[];
     setProducts: React.Dispatch<React.SetStateAction<any>>; 

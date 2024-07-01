@@ -1,27 +1,16 @@
 "use client";
+import { Category } from '@/interfaces/category.interface';
+import { Product } from '@/interfaces/product.interface';
 import axios from 'axios';
 import React, { useRef, useState, MouseEvent, useEffect } from 'react';
 
-interface Category {
-  id: number;
-  name: string;
-}
 
-type Product = {
-  id: number;
-  name: string;
-  price: number;
-  description: string;
-  category: string;
-  createdAt: Date;
-  updatedAt: Date;
-};
 
 type Props = {
   categories: Category[];
-  setCategories: React.Dispatch<React.SetStateAction<Category[]>>;
+  setCategories: React.Dispatch<React.SetStateAction<any>>;
   products: Product[];
-  setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
+  setProducts: React.Dispatch<React.SetStateAction<any>>;
 };
 
 function CategoriesCarousel({ categories, setCategories, products, setProducts }: Props) {
