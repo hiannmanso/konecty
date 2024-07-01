@@ -22,6 +22,16 @@ export class ProductService {
   }
 
   async createProduct(data: CreateProductDto) {
+    const category = await this.prisma.category.findUnique({
+      where: { name: data.category },
+    });
+    if (!category) {
+      await this.prisma.category.create({
+        data: {
+          name: data.category,
+        },
+      });
+    }
     return this.prisma.product.create({ data });
   }
 
